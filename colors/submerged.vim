@@ -32,22 +32,22 @@ function s:_hi(name, fg, bg, s)
     if (type(a:s) ==# type([]))
         " I don't care if it mutates the list, we don't reuse it anyway
         let l:s = s:style(join(map(a:s, { k, v -> v['c']}), ','))
-        if !(l:s['c'] ==# '')
+        if l:s['c'] !=# ''
             let l:exec_string .= s:format_style(l:s, '')
         endif
     else
-        if !(a:s ==? s:nil)
+        if a:s !=? s:nil
             let l:exec_string .= s:format_style(a:s, '')
         endif
     endif
     
     " Foreground routine. Skip nil or set fg
-    if !(a:fg ==? s:nil)
+    if a:fg !=? s:nil
 	let l:exec_string .= s:format_style(a:fg, 'fg')
     endif
 
     " Background routine. Skip nil or set bg
-    if !(a:bg ==? s:nil)
+    if a:bg !=? s:nil
 	let l:exec_string .= s:format_style(a:bg, 'bg')
     endif
 
