@@ -75,7 +75,7 @@ endfunction
 
 set background=dark
 hi clear
-if exists("syntax_on")
+if exists('syntax_on')
     syntax reset
 endif
 let g:colors_name='submerged'
@@ -163,8 +163,10 @@ call s:hi([
 
 call s:hi([
         \ 'FoldColumn',
-        \ 'Folded',
-        \ ],                  s:ldfg,      s:nbg)
+        \ 'SignColumn',
+        \ ],                  s:nbg,       s:nbg)
+
+call s:hi('Folded',           s:ldfg,      s:nbg)
 
 call s:hi([
         \ 'Search',
