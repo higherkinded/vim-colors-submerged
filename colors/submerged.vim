@@ -1,9 +1,9 @@
 " Maintainer:    higherkinded <higherkinded@protonmail.com>
 " Last Change:   2020-09-11
-" Version:       1.0
+" Version:       1.0.1
 " URL:           https://github.com/higherkinded/submerged
 
-let s:nil = { 'c': 'NIL', 'g': 'NIL' }
+let s:nil = {}
 
 function s:color(cterm, gui)
     return { 'c': a:cterm, 'g': a:gui }
@@ -13,10 +13,10 @@ function s:style(what)
     return { 'c': a:what, 'g': a:what }
 endfunction
 
-function s:format_style(st, postfix)
-    return ' cterm' 
-      \ . a:postfix . '=' . a:st['c']
-      \ . ' gui' . a:postfix . '=' . a:st['g']
+function s:format_style(st, ...)
+    let l:postfix = get(a:, 1, '')
+    return ' cterm' . l:postfix . '=' . a:st['c']
+      \  . ' gui'   . l:postfix . '=' . a:st['g']
 endfunction
 
 " Sets the highlighting.
@@ -33,11 +33,11 @@ function s:_hi(name, fg, bg, s)
         " I don't care if it mutates the list, we don't reuse it anyway
         let l:s = s:style(join(map(a:s, { k, v -> v['c']}), ','))
         if l:s['c'] !=# ''
-            let l:exec_string .= s:format_style(l:s, '')
+            let l:exec_string .= s:format_style(l:s)
         endif
     else
         if a:s !=? s:nil
-            let l:exec_string .= s:format_style(a:s, '')
+            let l:exec_string .= s:format_style(a:s)
         endif
     endif
     
