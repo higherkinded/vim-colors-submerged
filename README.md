@@ -9,7 +9,7 @@ well-lit environments. I can't verify the latter though. :P
 
 Here's how it looks:
  
-![Looks like this](/screenshots/submerged-looks.png)
+![Looks like this](https://github.com/higherkinded/repo-images/blob/master/vim-colors-submerged/submerged-looks.png?raw=true "Some QMK source as lorem ipsum")
 
 Enjoy.
 
