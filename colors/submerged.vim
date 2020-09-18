@@ -4,20 +4,21 @@
 " URL:           https://github.com/higherkinded/submerged
 
 let s:nil = {}
+let s:config = get(g:, 'submerged_theme', {})
 
-function s:color(cterm, gui)
+func s:color(cterm, gui)
     return { 'c': a:cterm, 'g': a:gui }
-endfunction
+endf
 
-function s:style(what)
+func s:style(what)
     return { 'c': a:what, 'g': a:what }
-endfunction
+endf
 
-function s:format_style(st, ...)
+func s:format_style(st, ...)
     let l:postfix = get(a:, 1, '')
     return ' cterm' . l:postfix . '=' . a:st['c']
       \  . ' gui'   . l:postfix . '=' . a:st['g']
-endfunction
+endf
 
 " Sets the highlighting.
 " Interface:
@@ -25,7 +26,7 @@ endfunction
 "       fg   - Foreground color.
 "       bg   - Background color.
 "       s    - Style or an array of styles.
-function s:_hi(name, fg, bg, s)
+func s:_hi(name, fg, bg, s)
     let l:exec_string = 'hi ' . a:name
 
     " Style routine. Check if there are multiple styles to set, work on them
@@ -53,7 +54,7 @@ function s:_hi(name, fg, bg, s)
 
     " Evaluate the command
     exe l:exec_string
-endfunction
+endf
 
 " High-level interface for highlighting, can set multiple groups
 " Interface:
@@ -61,7 +62,7 @@ endfunction
 "       fg    - Foreground colors.
 "       bg?   - Background colors.
 "       s?    - Style or an array of text styles to be applied.
-function s:hi(names, fg, ...)
+func s:hi(names, fg, ...)
     let l:bg = get(a:, 1, s:nil)
     let l:s = get(a:, 2, s:style('none'))
     if type(a:names) ==# type([])
@@ -71,7 +72,7 @@ function s:hi(names, fg, ...)
     else
 	call s:_hi(a:names, a:fg, l:bg, l:s)
     endif
-endfunction
+endf
 
 set background=dark
 hi clear
@@ -82,7 +83,7 @@ let g:colors_name='submerged'
 
 " Styles
 let s:sb     = s:style('bold')
-let s:si     = s:style('italic')  
+let s:si     = s:style(get(s:config, 'disable_italics') ? 'none' : 'italic')
 let s:su     = s:style('underline')
 let s:sn     = s:style('none')
 
