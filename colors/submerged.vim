@@ -99,8 +99,10 @@ let s:lbg    = s:color(234, '#1c1c1c')
 let s:ebg    = s:color(235, '#262626')
 let s:jade   = s:color( 49, '#00ffaf')
 let s:red    = s:color(204, '#ff5f87')
+let s:redbg  = s:color( 53, '#5f005f')
 let s:green  = s:color( 84, '#5fff87')
 let s:warn   = s:color(156, '#afff87')
+let s:warnbg = s:color( 59, '#5f5f5f')
 let s:teal   = s:color( 37, '#00afaf')
 let s:blue   = s:color( 44, '#00d7d7')
 let s:dteal  = s:color( 30, '#008787')
@@ -184,19 +186,25 @@ call s:hi([
         \ 'SpellLocal',
         \ 'SpellRare',
         \ 'WarningMsg',
-        \ ],                  s:warn,      s:nbg)
+        \ 'ALEWarningSign',
+        \ ],                  s:warn,      s:warnbg)
 call s:hi([
         \ 'ErrorMsg',
         \ 'Error',
         \ 'SpellBad',
-        \ ],                  s:red,       s:nbg)
+        \ 'ALEError',
+        \ 'ALEErrorSign',
+        \ ],                  s:red,       s:redbg)
 
 call s:hi([
         \ 'SpellBad',
         \ 'SpellCap',
         \ 'SpellLocal',
         \ 'SpellRare',
-        \ ],                  s:nil,       s:nil,       s:su)
+        \ 'ErrorMsg',
+        \ 'Error',
+        \ 'ALEError',
+        \ ],                  s:nil,       s:nil,       s:sn)
 
 call s:hi('MatchParen',       s:blue,       s:nbg,      s:sb)
 call s:hi('SpecialKey',       s:warn,       s:nil,      s:sb)
