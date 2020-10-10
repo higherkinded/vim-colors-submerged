@@ -41,15 +41,15 @@ func s:_hi(name, fg, bg, s)
             let l:exec_string .= s:format_style(a:s)
         endif
     endif
-    
+
     " Foreground routine. Skip nil or set fg
     if a:fg !=? s:nil
-	let l:exec_string .= s:format_style(a:fg, 'fg')
+        let l:exec_string .= s:format_style(a:fg, 'fg')
     endif
 
     " Background routine. Skip nil or set bg
     if a:bg !=? s:nil
-	let l:exec_string .= s:format_style(a:bg, 'bg')
+        let l:exec_string .= s:format_style(a:bg, 'bg')
     endif
 
     " Evaluate the command
@@ -66,11 +66,11 @@ func s:hi(names, fg, ...)
     let l:bg = get(a:, 1, s:nil)
     let l:s = get(a:, 2, s:style('none'))
     if type(a:names) ==# type([])
-	for name in a:names
-	    call s:_hi(name, a:fg, l:bg, l:s)
-	endfor
+        for name in a:names
+            call s:_hi(name, a:fg, l:bg, l:s)
+        endfor
     else
-	call s:_hi(a:names, a:fg, l:bg, l:s)
+        call s:_hi(a:names, a:fg, l:bg, l:s)
     endif
 endf
 
@@ -128,7 +128,7 @@ call s:hi([
         \ ],                  s:blue)
 call s:hi([
         \ 'Statement',
-	\ 'Type',
+        \ 'Type',
         \ ],                  s:dteal)
 call s:hi([
         \ 'Function',
@@ -207,7 +207,7 @@ call s:hi([
         \ ],                  s:nil,       s:nil,       s:sn)
 
 call s:hi('MatchParen',       s:blue,       s:nbg,      s:sb)
-call s:hi('SpecialKey',       s:warn,       s:nil,      s:sb)
+call s:hi('SpecialKey',       s:dimfg,      s:nil,      s:sb)
 call s:hi('Title',            s:green,      s:nbg,      s:sb)
 call s:hi('Directory',        s:teal,       s:nbg,      s:sb)
 call s:hi('Sign',             s:warn,       s:nbg)
